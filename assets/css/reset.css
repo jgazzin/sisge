@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/* md query */
+html {
+  /* font-size: 62.5%; */
+  /* font-size: 14px; */
+  scroll-behavior: smooth;
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+}
