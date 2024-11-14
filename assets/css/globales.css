@@ -1,13 +1,11 @@
 :root {
-  --color-ppal:  #22223B;
-  --color-complemento: #9A8C98;
-  --color-destaque: #694957;
-  --color-suplemento: #C9ADA7;
-  --color-light: #F2E9E4;
-  --color-dark: #0b0b13;
-
-  --shadow-light: 1px 1px 5px #C9ADA7;
-  --shadow-dark: 1px 1px 5px #9A8C98;
+  --color-ppal:  #1d3557;
+  --color-complemento: #457b9d;
+  --color-destaque: #e63946;
+  --color-suplemento: #f1faee;
+  --color-light: #Fff;
+  --color-dark: #070d16;
+  --gris: silver;
 }
   
   
@@ -64,17 +62,6 @@ input{
 }
 
 /* utilitarios */
-.container {
-  width: 30%;
-  margin: 0 auto;
-}
-
-@media (max-width: 576px) {
-    .container{
-      width: 100%;
-      padding: 0 16px;
-    }
-}
 
 .btn {
   width: 100%;
