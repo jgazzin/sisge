@@ -6,7 +6,11 @@ body{
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto auto;
+    grid-template-rows: auto 1fr;
+}
+.footer{
+    position: sticky;
+    bottom: 0;
 }
 
 .header{
