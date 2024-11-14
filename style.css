@@ -11,6 +11,7 @@ body{
 .footer{
     position: sticky;
     bottom: 0;
+
 }
 
 .header{
@@ -91,7 +92,7 @@ body{
 .container.headline{
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: -1;
 }
 
 .container.ver{
@@ -155,6 +156,13 @@ body{
     font-size: 16px;
 }
 
+.container .button{
+    width: 100%;
+    text-align: center;
+    margin: 30px 0;
+}
+
+
 /* ---- BOTTOM TAB NAV ---- */
 .bottom_nav{
     display: flex;
@@ -166,7 +174,6 @@ body{
     border-radius: 36px;
     background-color: var(--color-ppal);
     color: var(--color-light);
-
     z-index: 10;
 }
 
@@ -204,13 +211,41 @@ body{
     transform: scale(1.05);
 }
 
-@media (min-width: 768px) {
-
-}
 .copy{
     width: 100%;
     text-align: center;
     padding: 2px;
     background-color: var(--color-ppal);
     color: var(--color-light);
+}
+
+@media (min-width: 768px) {
+    body{
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'header body'
+        'footer body';
+        overflow: hidden;
+
+    }
+    .header{
+        height: 100vh;
+        padding-left: 50px;
+        border-radius: 0;
+        grid-area: 'header';
+        padding-top: 16px;
+    }
+    .footer{
+        padding-left: 50px;
+        grid-area: 'footer';
+    }
+    .footer .bottom_nav{
+        border-color: #fff;
+    }
+
+    .body{
+        margin: 16px;
+        padding-right: 50px;
+        grid-area: 'body';
+        padding-top: 16px;
+    }
 }

@@ -64,15 +64,14 @@ input{
 /* utilitarios */
 
 .btn {
-  width: 100%;
-  padding: 8px;
-  margin-top: 16px;
+  width: max-content;
+  padding: 24px 32px;
   border: none;
-  border-radius: 10px;
-  background: linear-gradient(to bottom, var(--color-destaque) 5%, var(--color-ppal) 100%);
+  border-radius: 32px;
+  background: linear-gradient(to bottom, var(--color-complemento) 5%, var(--color-ppal) 100%);
   color: var(--color-light);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
 }
