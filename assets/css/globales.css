@@ -64,11 +64,11 @@ input{
 /* utilitarios */
 
 .btn {
-  width: max-content;
+  width: 170px;
   padding: 24px 32px;
-  border: none;
+  border: 2px solid var(--color-ppal);
   border-radius: 32px;
-  background: linear-gradient(to bottom, var(--color-complemento) 5%, var(--color-ppal) 100%);
+  background: var(--color-ppal);
   color: var(--color-light);
   cursor: pointer;
   font-size: 18px;
@@ -77,15 +77,11 @@ input{
 }
 
 .btn:hover {
-	background:var(--color-ppal);
+	background:var(--color-suplemento);
+  color: var(--color-ppal);
+  box-shadow: 0 0 8px silver;
 }
 
-.btn:active {
-  background:transparent;
-	border: 2px solid var(--color-ppal);
-  color: var(--color-ppal);
-  box-shadow: var(--shadow-dark);
-}
 
 .alerta { 
   width: calc(100% - 32px);
