@@ -91,7 +91,7 @@ body{
     border-radius: 24px;
     background-color: #fff;
     padding: 8px 16px;
-    margin: 0 16px;
+    margin: 0 32px;
 }
 .container i{
     margin-right: 4px;
@@ -186,7 +186,7 @@ body{
     align-items: center;
     justify-content: center;
     margin: 16px 0;
-    padding: 0 50px;
+    padding: 0 80px;
     width: 100%;
 }
 
@@ -223,14 +223,14 @@ body{
     gap: 16px;
     margin-top: 16px;
 }
-.botones a{
+.botones p{
     font-size: 14px;
     font-weight: 400;
     color: var(--color-complemento);
     text-transform: none;
     text-decoration: underline;
 }
-.botones a:hover{
+.botones p:hover{
     color: var(--color-ppal);
 }
 

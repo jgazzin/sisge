@@ -65,7 +65,7 @@ input{
 
 .btn {
   width: 170px;
-  padding: 24px 32px;
+  padding: 20px 32px;
   border: 2px solid var(--color-ppal);
   border-radius: 32px;
   background: var(--color-ppal);
@@ -77,7 +77,7 @@ input{
 }
 
 .btn:hover {
-	background:var(--color-suplemento);
+	background: #fff;
   color: var(--color-ppal);
   box-shadow: 0 0 8px silver;
 }
