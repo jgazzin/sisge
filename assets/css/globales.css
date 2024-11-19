@@ -65,11 +65,11 @@ input{
 
 .btn {
   width: 170px;
-  padding: 20px 32px;
+  padding: 16px 32px;
   border: 2px solid var(--color-ppal);
   border-radius: 32px;
   background: var(--color-ppal);
-  color: var(--color-light);
+  color: #fff;
   cursor: pointer;
   font-size: 18px;
   font-weight: bold;

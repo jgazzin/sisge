@@ -1,84 +1,33 @@
 export const arq = [
     {
-        'nombre': 'bienvenido',
-        'options': [
-            'ingresar',
-            'registrarse',
-        ],
+    'nombre': 'acceder',
+    'op': [
+        'ingresar',
+        'registrar'
+    ]},
+    {
+    'nombre' : 'panel usuario',
+    'op': [
+        'perfil',
+        'obras',
+        'costos',
+        'mensajes'
+    ]
     },
     {
-        'nombre': 'panel',
-        'options': [
-            'perfil',
-            'proyectos',
-        ]
+    'nombre' : 'obras',
+    'op': [
+        ''
+    ]
     },
     {
-        'nombre': 'proyectos',
-        'options': [
-            `nombre`,
-            'monto',
-            'avance',
-            'activa'
-        ]
-    },
-    {
-        'nombre': 'obra',
-        'options': [
-            'información',
-            'computo',
-            'presupuesto',
-            'avance',
-            'materiales',
-            'servicios',
-            'certificados',
-            'notas'
-        ]
-    },
-    {
-        'nombre': 'items',
-        'options': {
-            'información': [
-                'propietario',
-                'ubicación',
-                'dirección',
-                'constructor'
-            ],
-            'rubros': [
-                'preliminares',
-                'fundaciones',
-                'cerramientos',
-                'cubiertas',
-                'aberturas',
-                'terminaciones',
-                'instalaciones',
-                'otros'
-            ]
-        }
-    },
-    {
-        'nombre': 'detalle',
-        'options': {
-            'perfil': [
-                'nombre',
-                'apellido',
-                'email',
-                'telefono',
-                'ocupación'
-            ],
-            'ubicacion': [
-                'calle',
-                'numero',
-                'piso',
-                'ciudad',
-                'provincia',
-            ],
-            'tareas': [
-                'nombre',
-                'valor',
-                'unidad'    
-            ]
-        }
+'nombre' : 'panel obra',
+    'op': [
+        'información',
+        'presupuesto',
+        'avance',
+        'certificados',
+        'listas'
+    ]
     }
-
 ]
