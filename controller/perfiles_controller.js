@@ -4,9 +4,7 @@ const obtenerPerfil = (req, res) => {
     const sql = 'SELECT * FROM sisge_perfiles';
     db.query(sql, (err, result) => {
         if(err){
-            console.log('Error obteniendo perfil: ', err);
-            res.status(500).json({mensaje: 'Error obteniendo usuarios'});
-            return;
+            throw err;
         }
         res.json(result);
     })
@@ -18,9 +16,7 @@ const crearPerfil = (req, res) => {
 
     db.query(sql, [nombre, apellido, oficio], (err, result) => {
         if(err){
-            console.log('Error creando perfil: ', err);
-            res.status(500).json({mensaje: 'Error creando perfil'});
-            return;
+            throw err;
         }
         res.json({
             mensaje: 'Perfil creado con éxito',

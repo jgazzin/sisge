@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express();
 const path = require('path')
-let port = 8080;
+let port = 5500;
+
 const usuariosRuta = require('./routes/user');
-const perfilesRuta = require('./routes/perfiles');
+const perfilesRuta = require('./routes/perfiles')
 
 // para recibir formatos json
 app.use(express.json());

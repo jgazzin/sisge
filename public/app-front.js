@@ -291,14 +291,14 @@ function UX__login(key){
     $btn.addEventListener('click', (e)=>{
         e.preventDefault();
         const form_data = new FormData(form);
-        const data = Object.fromEntries(form_data.entries());
-
-        if(verificar_user(data)){
-            if(crear_usuario(data)){
-                iniciar();
-            } else {
-                alert('el usuario no existe. registrese', 'error');
-            }
+        const data = {
+            email : form_data.get('email'),
+            password : form_data.get('password')
+        }
+        console.log(data);
+        
+        if(verificar_form(data)){
+            verificar_user(data)
         }
     })
 
@@ -334,9 +334,12 @@ function verificar_form(data){
             alerta_input('email inválido', 'email');
         }
         if(validar_password(data.password)){
-            if(!comparar_passwords(data.password, data.re_password)){      
+
+            if(data.re_password){
+                if(!comparar_passwords(data.password, data.re_password)){      
                 alerta_input('contraseñas no coinciden', 'password');
-            } 
+                }
+            }
         } 
         if(!document.querySelector('.msj_error')){
             return true
@@ -430,7 +433,20 @@ async function crear_usuario(info){
 }
 
 async function verificar_user(data){
-    console.log(data);
+    const response = await fetch('/usuarios');
+    const usuarios = await response.json()
+    const user = usuarios.filter(user => user.email === data.email);    
+
+    if(user.length > 0){
+        if(user[0].password == data.password){
+            localStorage.setItem('usuario', user[0].id);
+            iniciar()
+        } else {
+            alerta_input('Constraseña incorrecta', 'password')
+        }
+    } else {
+        alert('el usuario no existe. registrese', 'error');
+    }
     
 }
 

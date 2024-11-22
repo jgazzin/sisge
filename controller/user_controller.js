@@ -4,9 +4,7 @@ const obtenerUsuarios = (req, res) => {
     const sql = 'SELECT * FROM sisge_usuarios';
     db.query(sql, (err, result) => {
         if(err){
-            console.log('Error obteniendo usuarios: ', err);
-            res.status(500).json({mensaje: 'Error obteniendo usuarios'});
-            return;
+            throw err;
         }
         res.json(result);
     })
