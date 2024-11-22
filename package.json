@@ -1,0 +1,25 @@
+{
+  "name": "sisge",
+  "version": "1.0.0",
+  "description": "sistema de gestión obras",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgazzin/sisge.git"
+  },
+  "author": "jgdisenio",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.10.1",
+    "dotenv": "^16.4.5",
+    "path": "^0.12.7"
+  },
+  "bugs": {
+    "url": "https://github.com/jgazzin/sisge/issues"
+  },
+  "homepage": "https://github.com/jgazzin/sisge#readme"
+}

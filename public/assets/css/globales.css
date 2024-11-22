@@ -102,3 +102,8 @@ input{
   color: var(--color-light);
   background-color: tomato;
 }
+.msj_error {
+  color: tomato;
+  font-size: 12px;
+  font-style: italic;
+}

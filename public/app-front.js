@@ -45,7 +45,7 @@ function UX(){
             UX__option_nivel5()
             break;
         case 6:
-            UX__info_nivel6(key)
+            UX__info_nivel6()
             break;
         case 7:
             UX__info_nivel7()
@@ -62,26 +62,19 @@ function UX(){
     }
 }
 
-function alert(mensaje, error){
-    const $body = document.querySelector('.body');
-    if($body.querySelector('.alerta')){
-        $body.querySelector('.alerta').remove();
-    }
-    const alerta = document.createElement('h4');
-    alerta.classList.add('alerta', error);
-    alerta.textContent = mensaje;
-    $body.appendChild(alerta);
-
-}
-
 // EVENTOS GLOBALES
 const $head = document.querySelector('.headline .head h2');
 const $body = document.querySelector('.body');
 const $userIcon = document.querySelector('.nav_user');
+const $home = document.querySelector('.bottom_nav .home');
 
 $userIcon.addEventListener('click', function(){
     app.key = 'perfil';
     UX__info_nivel6()
+})
+
+$home.addEventListener('click', function(){
+    iniciar();
 })
     
 // FUNCINES UX NIVELES
@@ -115,6 +108,7 @@ function UX__option_nivel0(){
         option.addEventListener('click', function(){ 
             app.nivel_anterior = app.nivel;
             app.key = option.querySelector('h2').textContent;
+            app.nivel = 9;
             UX__editar_nivel9()
         })
     })
@@ -123,8 +117,10 @@ function UX__option_nivel0(){
 
 function UX__option_nivel1(){
     console.log(app.nivel);
+    const $$log = document.querySelectorAll('.log i');
+    $$log.forEach(log =>{ log.classList.toggle('hidden');})
     const $user = document.querySelector('.nav_user');
-    $user.querySelector('h3').textContent = app.usuario;
+    obtener_user_nombre($user);
     $user.querySelector('h3').nextElementSibling.classList.remove('hidden');
 
     $body.innerHTML = '';
@@ -173,7 +169,7 @@ function UX__items_nivel5(){
 }
 
 function UX__info_nivel6(){
-    console.log(key);
+    console.log(app.key);
 }
 
 function UX__info_nivel7(){
@@ -211,16 +207,19 @@ function UX__registro(key){
     form.classList.add('log_container', key);
     form.innerHTML = `
         <div class="input">
-          <label for="reg-emal">e-mail</label>
-          <input type="email" id="reg-emal" name="emal" placeholder="e-mail">
+          <label for="reg_emal">e-mail</label>
+          <input type="email" id="reg_emal" name="email" placeholder="e-mail">
         </div>
         <div class="input">
-          <label for="reg-password">contraseña</label>
-          <input type="password" id="reg-password" name="password" placeholder="contraseña">
+          <label for="reg_password">contraseña</label>
+          <div>
+            <input type="password" id="reg_password" name="password" placeholder="contraseña">
+            <span class="eye"><i class="fa-regular fa-eye fa-lg"></i></span>
+          </div>
         </div>
         <div class="input">
-          <label for="re-password">repetir contraseña</label>
-          <input type="password" id="re-password" name="re-password" placeholder="contraseña">
+          <label for="re_password">repetir contraseña</label>
+          <input type="password" id="re_password" name="re_password" placeholder="contraseña">
         </div>
         <div class="botones">
           <button class="btn">Registrar</button>
@@ -232,6 +231,7 @@ function UX__registro(key){
     // eventos
     const $btn = form.querySelector('.btn');
     const $ingresar = form.querySelector('.botones p');
+    const $eye = form.querySelector('.eye');
 
     $ingresar.addEventListener('click', function(){
         UX__login('ingresar')
@@ -241,12 +241,16 @@ function UX__registro(key){
         e.preventDefault();
         const form_data = new FormData(form);
         const data = Object.fromEntries(form_data.entries());
-        if(verificar_user(data)){
-            localStorage.setItem('usuario', data.emal);
-            iniciar();
-        } else {
-            alert('el usuario ya existe. ingrese', 'error');
-        }
+        console.log(data);
+        
+
+        if(verificar_form(data)){
+            crear_usuario(data)
+        } 
+    })
+
+    $eye.addEventListener('click', (e)=>{
+        togglePassword(e)
     })
 }
 
@@ -257,24 +261,28 @@ function UX__login(key){
     const form = document.createElement('form');
     form.classList.add('log_container', key);
     form.innerHTML = `
-    <div class="input">
-        <label for="log-emal">e-mail</label>
-        <input type="email" id="log-emal" name="emal" placeholder="e-mail">
-    </div>
-    <div class="input">
-        <label for="log-password">contraseña</label>
-        <input type="password" id="log-password" name="password" placeholder="contraseña">
-    </div>
-    <div class="botones">
-        <button class="btn">entrar</button>
-        <p>O registre una cuenta nueva</p>
-    </div>
+        <div class="input">
+          <label for="log_emal">e-mail</label>
+          <input type="email" id="log_emal" name="email" placeholder="e-mail">
+        </div>
+        <div class="input">
+          <label for="log_password">contraseña</label>
+          <div>
+            <input type="password" id="log_password" name="password" placeholder="contraseña">
+            <span class="eye"><i class="fa-regular fa-eye fa-lg"></i></span>
+          </div>
+        </div>
+        <div class="botones">
+          <button class="btn">entrar</button>
+          <p>O registre una cuenta nueva</p>
+        </div>
     `;
     $body.appendChild(form);
 
     // eventos
     const $btn = form.querySelector('.btn');
     const $registro = form.querySelector('.botones p');
+    const $eye = form.querySelector('.eye');
 
     $registro.addEventListener('click', function(){
         UX__registro('registrar')
@@ -284,27 +292,156 @@ function UX__login(key){
         e.preventDefault();
         const form_data = new FormData(form);
         const data = Object.fromEntries(form_data.entries());
+
         if(verificar_user(data)){
-            const $$log = document.querySelectorAll('.log i');
-            $$log.forEach(log =>{
-                log.classList.toggle('hidden');
-            })
-            localStorage.setItem('usuario', data.emal);
-            iniciar();
-        } else {
-            alert('el usuario no existe. registrese', 'error');
+            if(crear_usuario(data)){
+                iniciar();
+            } else {
+                alert('el usuario no existe. registrese', 'error');
+            }
         }
     })
+
+    $eye.addEventListener('click', (e)=>{
+        togglePassword(e)
+    })
+
 }
 
 function UX__info_user(){
     console.log(app.nivel);  
 }
 
-function verificar_user(data){
-    console.log('verificar user');
+// FUNCIONALIDADES GLOBALES
+
+function verificar_form(data){
+
+    if(document.querySelector('.msj_error')){
+        while (document.querySelector('.msj_error')) {
+            document.querySelector('.msj_error').remove();
+        }
     
-    return true;
+    }
+    if(document.querySelector('.alerta')){
+        document.querySelector('.alerta').remove();
+    }
+
+    if(Object.values(data).includes('')){
+        alert('todos los campos son obligatorios', 'error');
+        return;
+    } else {
+        if(!validarEmail(data.email)){
+            alerta_input('email inválido', 'email');
+        }
+        if(validar_password(data.password)){
+            if(!comparar_passwords(data.password, data.re_password)){      
+                alerta_input('contraseñas no coinciden', 'password');
+            } 
+        } 
+        if(!document.querySelector('.msj_error')){
+            return true
+        }          
+    }
+     
+}
+
+function validarEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+function validar_password(password){
+    if(password.length < 6){
+        alerta_input('la contraseña debe tener al menos 6 caracteres', 'password');
+    } else {
+        return true;
+    }
+}
+function comparar_passwords(password, re_password){
+    if(password !== re_password){
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function alert(mensaje, error){
+    if($body.querySelector('.alerta')){
+        $body.querySelector('.alerta').remove();
+    }
+    const alerta = document.createElement('h4');
+    alerta.classList.add('alerta', error);
+    alerta.textContent = mensaje;
+    $body.appendChild(alerta);
+
+}
+
+function alerta_input(mensaje, type){
+    const $input = document.querySelector(`form input[type='${type}']`);
+        
+    const p = document.createElement('p');
+    p.classList.add('msj_error');
+    p.textContent = mensaje;
+    $input.parentElement.appendChild(p);
     
 }
 
+function togglePassword(e){
+    const $eye = e.target;
+    if($eye.classList.contains('fa-solid')){
+        $eye.classList.remove('fa-solid');
+        $eye.classList.add('fa-regular');
+    } else {
+        $eye.classList.remove('fa-regular');
+        $eye.classList.add('fa-solid');
+    } 
+    const $input = $eye.parentElement.parentElement.firstElementChild;
+    $input.type = $input.type  === 'password' ? 'text' : 'password';
+}
+
+// FUNCIONES CONSULTAS SQL
+
+async function crear_usuario(info){
+    const data = {
+        email: info.email,
+        password: info.password
+    }
+
+    const response = await fetch('/usuarios')
+    const usuarios = await response.json()
+    const user = usuarios.filter(user => user.email === data.email);
+  
+    
+    if(user.length > 0){
+        alert('el usuario ya existe. Ir a Ingresar', 'error');
+    } else {
+        const response = await fetch('/usuarios', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        const result = await response.json()
+        console.log(result.mensaje);
+        localStorage.setItem('usuario', result.idUsuario);
+        iniciar();    
+    }
+}
+
+async function verificar_user(data){
+    console.log(data);
+    
+}
+
+async function obtener_user_nombre(container){
+    const response = await fetch(`/perfiles`)
+    const perfiles = await response.json()
+    const perfil = perfiles.filter(perfil => perfil.id_user == app.usuario);
+   
+    if(perfil.length > 0){
+        container.querySelector('h3').textContent = perfil[0].nombre;
+    } else {
+         container.querySelector('h3').textContent = 'Bienvenido';
+    }
+}

@@ -26,7 +26,7 @@
           <div class="user">
             <i class="fa-solid fa-user fa-xl"></i>
           </div>
-          <h3>Nombre User </h3>
+          <h3></h3>
           <i class="fa-solid fa-caret-right fa-xl"></i>
         </div>
 
@@ -64,12 +64,12 @@
 
       <form class="log_container login">
         <div class="input">
-          <label for="log-emal">e-mail</label>
-          <input type="email" id="log-emal" name="emal" placeholder="e-mail">
+          <label for="log_emal">e-mail</label>
+          <input type="email" id="log_emal" name="emal" placeholder="e-mail">
         </div>
         <div class="input">
-          <label for="log-password">contraseña</label>
-          <input type="password" id="log-password" name="password" placeholder="contraseña">
+          <label for="log_password">contraseña</label>
+          <input type="password" id="log_password" name="password" placeholder="contraseña">
         </div>
         <div class="botones">
           <button class="btn">entrar</button>
@@ -79,16 +79,19 @@
 
       <form class="log_container registrar">
         <div class="input">
-          <label for="reg-emal">e-mail</label>
-          <input type="email" id="reg-emal" name="emal" placeholder="e-mail">
+          <label for="reg_emal">e-mail</label>
+          <input type="email" id="reg_emal" name="emal" placeholder="e-mail">
         </div>
         <div class="input">
-          <label for="reg-password">contraseña</label>
-          <input type="password" id="password" name="reg-password" placeholder="contraseña">
+          <label for="reg_password">contraseña</label>
+          <div>
+            <input type="password" id="reg_password" name="password" placeholder="contraseña">
+            <span class="eye" onclick="togglePassword(e)"><i class="fa-solid fa-eye"></i></span>
+          </div>
         </div>
         <div class="input">
-          <label for="re-password">repetir contraseña</label>
-          <input type="password" id="re-password" name="re-password" placeholder="contraseña">
+          <label for="re_password">repetir contraseña</label>
+          <input type="password" id="re_password" name="re_password" placeholder="contraseña">
         </div>
         <div class="botones">
           <button class="btn">Registrar</button>
