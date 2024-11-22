@@ -1,10 +1,11 @@
 const mysql = require('mysql2');
+require('dotenv').config();
 
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    //database: 'sisge_bd'
+    //database: 'jgdisenio_sisge'
 });
 
 connection.connect((err) =>{
@@ -15,14 +16,14 @@ connection.connect((err) =>{
     console.log('conexión BD establecida');
 })
 
-connection.query('CREATE DATABASE IF NOT EXISTS sisge_bd', (err, res) => {
+connection.query('CREATE DATABASE IF NOT EXISTS jgdisenio_sisge', (err, res) => {
     if(err){
         console.log('error creando base de datos');
         return;
     }
     console.log('base de datos creada');
 
-    connection.changeUser({database: 'sisge_bd'}, (err) => {
+    connection.changeUser({database: 'jgdisenio_sisge'}, (err, res) => {
         if(err){
             console.log('error cambiando usuario');
             return;
