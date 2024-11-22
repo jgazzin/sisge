@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  //database: 'jgdisenio_sisge'
+  //database: 'sql3718803'
 });
 
 connection.connect((err) => {
@@ -15,14 +15,14 @@ connection.connect((err) => {
   }
   console.log("conexión BD establecida");
 
-  connection.query("CREATE DATABASE IF NOT EXISTS jgdisenio_sisge", (err, res) => {
+  connection.query("CREATE DATABASE IF NOT EXISTS sql3718803", (err, res) => {
     if (err) {
       console.log("error creando base de datos");
       return;
     }
     console.log("base de datos creada");
 
-    connection.changeUser({ database: "jgdisenio_sisge" }, (err, res) => {
+    connection.changeUser({ database: "sql3718803" }, (err, res) => {
       if (err) {
         console.log("error cambiando usuario");
         return;
@@ -32,7 +32,7 @@ connection.connect((err) => {
 
     // tabla ususarios
     const createtableUsuariosQuery = `
-    CREATE TABLE IF NOT EXISTS usuarios(
+    CREATE TABLE IF NOT EXISTS sisge_usuarios(
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(50) NOT NULL,
     password VARCHAR(10) NOT NULL,
@@ -50,7 +50,7 @@ connection.connect((err) => {
 
     // tabla perfiles
     const createtablePerfilesQuery = `
-    CREATE TABLE IF NOT EXISTS perfiles(
+    CREATE TABLE IF NOT EXISTS sisge_perfiles(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50),
