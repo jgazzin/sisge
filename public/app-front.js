@@ -442,6 +442,6 @@ async function obtener_user_nombre(container){
     if(perfil.length > 0){
         container.querySelector('h3').textContent = perfil[0].nombre;
     } else {
-         container.querySelector('h3').textContent = 'Bienvenido';
+         container.querySelector('h3').textContent = 'Bienvenido!';
     }
 }

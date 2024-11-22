@@ -1,7 +1,7 @@
 const db = require('../db/database');
 
 const obtenerPerfil = (req, res) => {
-    const sql = 'SELECT * FROM sisge_perfiles';
+    const sql = 'SELECT * FROM perfiles';
     db.query(sql, (err, result) => {
         if(err){
             console.log('Error obteniendo perfil: ', err);
@@ -14,7 +14,7 @@ const obtenerPerfil = (req, res) => {
 
 const crearPerfil = (req, res) => {
     const {nombre, apellido, oficio} = req.body;
-    const sql = 'INSERT INTO sisge_perfiles (nombre, apellido, oficio) VALUES (?, ?, ?)';
+    const sql = 'INSERT INTO perfiles (nombre, apellido, oficio) VALUES (?, ?, ?)';
 
     db.query(sql, [nombre, apellido, oficio], (err, result) => {
         if(err){
@@ -30,7 +30,7 @@ const crearPerfil = (req, res) => {
 
 const obtenerPerfilID = (req, res) => {
     const {id} = req.params;
-    const sql = 'SELECT * FROM sisge_perfiles WHERE id_user = ?';
+    const sql = 'SELECT * FROM perfiles WHERE id_user = ?';
 
     db.query(sql, [id], (err, result) => {
         if(err) {
