@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 const path = require('path')
-let port = 3306;
+let port = 3000;
 
 const usuariosRuta = require('./routes/user');
 const perfilesRuta = require('./routes/perfiles')
