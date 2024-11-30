@@ -2,10 +2,10 @@ const mysql = require("mysql2");
 require("dotenv").config();
 
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  //database: 'sql3718803'
+  host: process.env.BD_HOST,
+  user: process.env.BD_USER,
+  password: process.env.BD_PASSWORD,
+  database: "sql3718803",
 });
 
 connection.connect((err) => {
@@ -37,7 +37,8 @@ connection.connect((err) => {
         password VARCHAR(10) NOT NULL,
         perfil INT,
         contacto INT,
-        direccion INT);`;
+        direccion INT);
+      `;
 
       connection.query(createtableUsuariosQuery, (err, result) => {
         if (err) {
@@ -54,7 +55,8 @@ connection.connect((err) => {
         nombre VARCHAR(50) NOT NULL,
         apellido VARCHAR(50),
         oficio VARCHAR(50),
-        id_user INT NOT NULL);`;
+        id_user INT NOT NULL);
+      `;
 
       connection.query(createtablePerfilesQuery, (err, result) => {
         if (err) {
@@ -63,6 +65,7 @@ connection.connect((err) => {
         }
         console.log("Tabla perfiles asegurada");
       });
+
     });
   });
 });
