@@ -409,10 +409,27 @@ function crear_usuario(info){
     iniciar()   
 }
 
-function verificar_user(data){
-    console.log(`verificar usuario ${data}`);
-    localStorage.setItem('usuario', data.email);
-    iniciar()
+async function verificar_user(data){
+    // verificar user desde login
+
+    const respons = await fetch('/usuarios');
+    const usuarios = await respons.json();
+    const user_find = usuarios.find(user => user.email === data.email);
+    if(user_find){
+        if(user_find.password === data.password){
+            localStorage.setItem('usuario', user_find.id);
+            spinner()
+            setTimeout(()=>{
+                iniciar()
+            }, 2000)
+        } else {
+            alerta_input('Contraseña incorrecta', 'password');
+        }
+    } else {
+        alerta_input('El usuario no existe. Registre uno nuevo.', 'email');
+    }
+
+
 }
 
 // -------------------- FUNCIONES GLOBALES
@@ -436,4 +453,11 @@ function alerta_input(mensaje, type){
     p.textContent = mensaje;
     $input.parentElement.appendChild(p);
     
+}
+
+function spinner(){
+    $body.innerHTML = '';
+    const loader = document.createElement('div');
+    loader.classList.add('loader');
+    $body.appendChild(loader);
 }
